@@ -1,6 +1,7 @@
 import http from "http";
 import WebSocket from "ws";
 import express from "express";
+import { parse } from "path";
 
 const app = express();
 
@@ -20,12 +21,23 @@ const sockets = [];
 
 wss.on("connection", (socket) => {
   sockets.push(socket);
+  socket["nickname"] = "Anon";
   console.log("Connected to Browser ✅");
   socket.on("close", () => {
     console.log("Disonnected from Browser ❌");
   });
   socket.on("message", (msg) => {
-    sockets.forEach((aSocket) => aSocket.send(msg.toString("utf-8")));
+    const message = JSON.parse(msg);
+    switch (message.type) {
+      case "new_message":
+        sockets.forEach((aSocket) =>
+          aSocket.send(`${socket.nickname}: ${message.payload}`)
+        );
+        break;
+      case "nickname":
+        socket["nickname"] = message.payload;
+        break;
+    }
   });
 });
 
