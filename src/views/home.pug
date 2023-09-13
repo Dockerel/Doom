@@ -9,8 +9,11 @@ html(lang="en")
         header
             h1 Noom
         main
+            form#nickname
+                input(type="text" placeholder="choose a nickname")
+                button Save
             ul
-                form
-                    input(type="text" placeholder="write a msg")
-                    button Send
+            form#message
+                input(type="text" placeholder="write a msg")
+                button Send
         script(src="/public/js/app.js")
