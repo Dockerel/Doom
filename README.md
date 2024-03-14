@@ -1,3 +1,3 @@
 # DOOM
 
-real time system using nodejs, webRTC and webSockets
+Real-time video conferencing service with nodejs, webRTC, webSocket
