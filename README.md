@@ -1,3 +1,3 @@
-# NOOM
+# DOOM
 
-zoom clone using nodejs, webRTC and webSockets
+real time system using nodejs, webRTC and webSockets
